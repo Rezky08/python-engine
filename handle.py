@@ -42,13 +42,11 @@ class handle:
                                  num_population, crossover_rate, mutation_rate, timeout)
         max_chromosom, fit_score, running_time = algen.run_generation()
         results = []
-        for index, chromosom in enumerate(max_chromosom):
-            result = {
-                'data': chromosom,
-                'fit_score': fit_score[index]
-            }
-            results.append(result)
-        return results
+        result = {
+            'data': max_chromosom,
+            'fit_score': fit_score
+        }
+        return result
 
     def jadwal(self):
         # rules = self.requests['rules']

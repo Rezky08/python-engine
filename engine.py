@@ -10,8 +10,8 @@ from celery.result import AsyncResult
 
 app = Flask(__name__)
 app.config.update(
-    CELERY_BROKER_URL='redis://localhost:6379/0',
-    CELERY_RESULT_BACKEND='redis://localhost:6379/0'
+    CELERY_BROKER_URL='redis://127.0.0.1:6379/0',
+    CELERY_RESULT_BACKEND='redis://127.0.0.1:6379/0'
 )
 headers = {
     'Host': 'server.api'
@@ -23,18 +23,11 @@ celery = tasks.make_celery(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    json_data = request.get_json()
     response = {
         'status': 200,
-        'time': 20,
-        'results': 1
+        'message' : "OK"
     }
-    # make request
-    response = requests.post(
-        "{}api/python/kelompok_dosen/result".format(url), headers=headers, data=response)
-    print(response.text)
-    json_serialize = json.loads(response.text)
-    return jsonify(json_serialize)
+    return jsonify(response)
 
 
 @app.route('/kelompok', methods=['POST'])

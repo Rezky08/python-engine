@@ -199,8 +199,10 @@ class algen_only_dosen():
 
             if len(gen_avg)>5:
                 print(gen_avg_unique)
-                if avg>=1 or len(gen_avg_unique)==1 or (time.time() - start_time >= self.timeout and self.timeout != 0):
+                if len(gen_avg_unique)==1 or (time.time() - start_time >= self.timeout and self.timeout != 0):
                     break
+            if avg>=1:
+                break
 
             pop = self.evolve(pop)
         elapsed_time = time.time() - start_time
@@ -209,6 +211,8 @@ class algen_only_dosen():
         choosed_chromosom = map(lambda x: x[0], choosed_chromosom)
         choosed_chromosom = list(choosed_chromosom)
         max_chromosom = np.array(pop)[choosed_chromosom].tolist()
+        max_chromosom=max_chromosom[0]
         max_score = np.array(pop_score)[choosed_chromosom].tolist()
+        max_score = max_score[0]
 
         return max_chromosom,max_score, elapsed_time
