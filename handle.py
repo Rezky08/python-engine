@@ -28,9 +28,13 @@ class handle:
 
     def dosen(self):
         nn_params = {
-            'mata_kuliah': self.requests['nn_params']['mata_kuliah'],
-            'matkul_dosen': pd.DataFrame(self.requests['nn_params']['matkul_dosen']).to_dict(orient='list')
+            'matkul_dosen': pd.DataFrame(self.requests['nn_params']['matkul_dosen']).to_dict(orient='list'),
         }
+        try:
+            nn_params['mata_kuliah'] = self.requests['nn_params']['mata_kuliah']
+        except:
+            nn_params['mata_kuliah'] = self.kelompok()
+
         rules = self.requests['rules']
         num_generation = self.requests['num_generation']
         num_population = self.requests['num_population']

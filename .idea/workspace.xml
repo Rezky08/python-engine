@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d001bbd-43f7-4ddc-a330-641b05e9f3e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CLEAR.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CLEAR.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dosen/algen_only_dosen.py" beforeDir="false" afterPath="$PROJECT_DIR$/dosen/algen_only_dosen.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handle.py" beforeDir="false" afterPath="$PROJECT_DIR$/handle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyvenv.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/pyvenv.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -119,7 +113,9 @@
       <workItem from="1586058780003" duration="24863000" />
       <workItem from="1586136060223" duration="1495000" />
       <workItem from="1588210488976" duration="693000" />
-      <workItem from="1588215531455" duration="3986000" />
+      <workItem from="1588215531455" duration="4078000" />
+      <workItem from="1593305665427" duration="11617000" />
+      <workItem from="1594193750263" duration="10494000" />
     </task>
     <servers />
   </component>

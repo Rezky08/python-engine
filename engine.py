@@ -86,6 +86,7 @@ def dosen_result():
     json_data = copy.deepcopy(request.get_json())
     task_id = json_data['celery_id']
     task = kelompok_dosen_process.AsyncResult(task_id)
+    print(task.result)
     if task.status == "SUCCESS":
         response = {
             'status': task.status,
