@@ -240,8 +240,8 @@ class algen_matkul():
             if sesi_selesai > len(self.nn_params['sesi'])-1:
                 sesi = copy.deepcopy(self.nn_params['sesi'][sesi_mulai])
                 sesi = {
-                    'sesi_mulai': chromosom[index]['sesi']['sesi_mulai'].strftime("%H:%M:%S"),
-                    'sesi_selesai': chromosom[index]['sesi']['sesi_selesai'].strftime("%H:%M:%S")
+                    'sesi_mulai': sesi['sesi_mulai'].strftime("%H:%M:%S"),
+                    'sesi_selesai': sesi['sesi_selesai'].strftime("%H:%M:%S")
                 }
                 chromosom[index] = {
                     **chromosom[index],**sesi

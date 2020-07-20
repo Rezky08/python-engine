@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2d001bbd-43f7-4ddc-a330-641b05e9f3e1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/pip.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/pip.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/pip3.8.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/pip3.8.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/pip3.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/pip3.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handle.py" beforeDir="false" afterPath="$PROJECT_DIR$/handle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mata_kuliah/algen_matkul.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mata_kuliah/algen_matkul_splitted.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mata_kuliah/rules_matkul.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mata_kuliah/step3/algen_matkul_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/mata_kuliah/step3/algen_matkul_new.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -130,6 +124,7 @@
       <workItem from="1594957215759" duration="40000" />
       <workItem from="1595081529914" duration="616000" />
       <workItem from="1595224633065" duration="2204000" />
+      <workItem from="1595286555194" duration="83000" />
     </task>
     <servers />
   </component>
