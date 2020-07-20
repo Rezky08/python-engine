@@ -1,5 +1,5 @@
 
-from mata_kuliah.rules_matkul import rules
+from mata_kuliah.step1.rules_matkul_new import rules
 import random
 import numpy as np
 import time
@@ -28,7 +28,14 @@ class algen_matkul():
         for key in nn_params.keys():
             self.simply_nn_params[key] = [index for index,
                                           item in enumerate(self.nn_params[key])]
-
+        max_hari_mata_kuliah = {}
+        kode_matkul = map(lambda x:x['kode_matkul'],self.nn_params['mata_kuliah'])
+        kode_matkul = list(kode_matkul)
+        kode_matkul,kode_matkul_count = np.unique(kode_matkul,return_counts=True)
+        for index,item in enumerate(kode_matkul):
+            max_hari_mata_kuliah[item] = kode_matkul_count[index]/len(self.simply_nn_params['hari'])
+            max_hari_mata_kuliah[item] = math.ceil(max_hari_mata_kuliah[item])
+        self.nn_params['max_hari_mata_kuliah'] = copy.deepcopy(max_hari_mata_kuliah)
         self.num_population = num_population
         self.num_generation = num_generation+1
         self.crossover_rate = crossover_rate
@@ -38,11 +45,9 @@ class algen_matkul():
         self.threading = threading
 
     def generate_first_pop(self):
-        chromosom_len = len(self.nn_params['mata_kuliah'])
         population = []
-        for num_chromosom in range(self.num_population):
-            chromosom = random.sample(
-                self.simply_nn_params['ruang_waktu'], k=chromosom_len)
+        for num_population in range(self.num_population):
+            chromosom = random.choices(self.simply_nn_params['hari'],k=len(self.nn_params['mata_kuliah']))
             population.append(chromosom)
         return population
 
@@ -82,11 +87,13 @@ class algen_matkul():
         using multi point crossover
         :return:
         """
-        point = []
+        # point = []
         child = []
-        for _ in range(2):
-            point.append(random.randint(0, len(male)-1))
-        point = sorted(point)
+        # for _ in range(2):
+        #     point.append(random.randint(0, len(male)-1))
+        # point = sorted(point)
+        point_value = math.floor(len(male)/3)
+        point = [point_value,-point_value]
 
         child.append(
             list(male[:point[0]])+list(female[point[0]:point[1]])+list(male[point[1]:]))
@@ -116,8 +123,40 @@ class algen_matkul():
         if que != None:
             que.put(chromosom)
         return chromosom
+    def mutation(self,chromosom):
+        for index,gen in enumerate(chromosom):
+            if self.mutation_rate>random.random():
+                chromosom_score = self.rules.calculate_chromosom(chromosom)
+                chromosom_validate = copy.deepcopy(chromosom)
+                choosed_list = []
+                while True:
 
-    def mutation(self, chromosom):
+                    choosed = random.choice(self.simply_nn_params['hari'])
+
+                    while True:
+                        if choosed not in choosed_list:
+                            break
+                        choosed = random.choice(self.simply_nn_params['hari'])
+
+                    choosed_list.append(choosed)
+
+
+                    chromosom_validate[index] = choosed
+                    chromosom_validate_score = self.rules.calculate_chromosom(chromosom_validate)
+                    if chromosom_validate_score > chromosom_score:
+                        print("Mutation Check : new {} ; old {}".format(
+                            chromosom_validate_score, chromosom_score))
+                        chromosom = copy.deepcopy(chromosom_validate)
+                        break
+                    elif chromosom_validate_score == chromosom_score:
+                        chromosom = copy.deepcopy(chromosom_validate)
+
+                    if len(choosed_list) >= len(self.simply_nn_params['hari']):
+                        break
+
+        return chromosom
+
+    def mutation_old(self, chromosom):
         for index, gene in enumerate(chromosom):
             if random.random() > random.random():
                 chromosom_validate = copy.deepcopy(chromosom)
@@ -197,21 +236,10 @@ class algen_matkul():
         return parent
 
     def translate(self, chromosom):
-        chromosom_simple = np.array(
-            self.nn_params['ruang_waktu_simple'])[chromosom]
-        chromosom = np.array(self.nn_params['ruang_waktu'])[chromosom]
-        for index, item in enumerate(chromosom):
-            sks = self.nn_params['mata_kuliah'][index]['sks_matkul']-1
-            sesi_selesai = chromosom_simple[index]['sesi']+sks
-            try:
-                sesi = {
-                    'sesi_mulai': item['sesi']['sesi_mulai'],
-                    'sesi_selesai': self.nn_params['sesi'][sesi_selesai]['sesi_selesai']
-                }
-            except:
-                sesi = item['sesi']
-            chromosom[index]['sesi'] = sesi
-        chromosom = list(chromosom)
+        for index,gen in enumerate(chromosom):
+            chromosom[index]= {
+                'hari' : gen,
+            }
         return chromosom
 
     def concat_with_key(self, chromsom):
@@ -246,14 +274,13 @@ class algen_matkul():
             if avg >= 1:
                 break
             pop = self.evolve(pop)
-
         elapsed_time = time.time() - start_time
         chromosom_max_index = np.argwhere(
             np.array(pop_score) == max(pop_score))
         choosed_chromosom = random.choice(chromosom_max_index)
         # choosed_chromosom = map(lambda x: x[0], choosed_chromosom)
         # choosed_chromosom = list(choosed_chromosom)
-        max_chromosom = np.array(pop)[choosed_chromosom].tolist()
+        max_chromosom = np.array(pop)[choosed_chromosom].tolist()[0]
         max_chromosom = self.translate(max_chromosom)
         max_chromosom = self.concat_with_key(max_chromosom)
         max_score = np.array(pop_score)[choosed_chromosom][0]

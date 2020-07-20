@@ -3,7 +3,7 @@ import numpy as np
 import time
 import random
 import math
-from mata_kuliah.algen_matkul import algen_matkul
+from mata_kuliah.step3.algen_matkul_new import algen_matkul
 import sys
 import threading
 import queue
@@ -25,33 +25,31 @@ class algen_matkul_splitted():
     def splitting(self):
         chromosom_cp = copy.deepcopy(self.nn_params['mata_kuliah'])
         mata_kuliah_split = {x: [] for x in self.nn_params['hari']}
-        while(len(chromosom_cp) != 0):
-            hari_select = random.choice(self.nn_params['hari'])
-            rn = random.random() * len(chromosom_cp)
-            rn = math.floor(rn)
-            mata_kuliah_split[hari_select].append(chromosom_cp[rn])
-            chromosom_cp.pop(rn)
+        for index, item in enumerate(self.nn_params['mata_kuliah']):
+            mata_kuliah_split[self.nn_params['hari'][item['hari']]].append(copy.deepcopy(item))
 
         for index, item in enumerate(self.nn_params['hari']):
             nn_params = copy.deepcopy(self.nn_params)
-            ruang_waktu_filtered = filter(
-                lambda x: x['hari'] == item, self.nn_params['ruang_waktu'])
-            ruang_waktu_simple_filtered = filter(
-                lambda x: x['hari'] == index, self.nn_params['ruang_waktu_simple'])
-            nn_params['mata_kuliah'] = mata_kuliah_split[item]
-            nn_params['ruang_waktu'] = list(ruang_waktu_filtered)
-            nn_params['ruang_waktu_simple'] = list(ruang_waktu_simple_filtered)
+            nn_params['mata_kuliah'] = copy.deepcopy(mata_kuliah_split[item])
             self.nn_params_hari[item] = copy.deepcopy(nn_params)
 
     def algen_threading(self, nn_params, que=None, threading=False):
         algen = algen_matkul(nn_params, self.num_generation, self.num_population, self.crossover_rate,
                              self.mutation_rate, self.timeout, threading)
-        while (True):
-            print(nn_params['ruang_waktu'][0]['hari'])
-            result, fitscore, elapsed_time = algen.run_generation()
-            if fitscore == 1:
-                break
-        print("{} Selesai".format(nn_params['ruang_waktu'][0]['hari']))
+        result, fitscore, elapsed_time = algen.run_generation()
+        # fit_score_res = []
+        # while (True):
+        #     print(nn_params['ruang_waktu'][0]['hari'])
+        #     result, fitscore, elapsed_time = algen.run_generation()
+            # fit_score_res.append(fitscore)
+        #     print("result fit score : {}".format(fit_score_res[-5:]))
+        #     fit_score_unique = np.unique(fit_score_res[-5:])
+        #     print("result fit unique score : {}".format(fit_score_unique))
+        #     if len(fit_score_res)>=5:
+        #         break
+        #     if fitscore == 1:
+        #         break
+        print("{} Selesai".format(nn_params['mata_kuliah'][0]['hari']))
 
         if que != None:
             que.put(result)

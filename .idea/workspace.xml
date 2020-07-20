@@ -3,8 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="2d001bbd-43f7-4ddc-a330-641b05e9f3e1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/pip.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/pip.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/pip3.8.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/pip3.8.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/pip3.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/pip3.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handle.py" beforeDir="false" afterPath="$PROJECT_DIR$/handle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mata_kuliah/algen_matkul.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mata_kuliah/algen_matkul_splitted.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mata_kuliah/rules_matkul.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -116,6 +121,15 @@
       <workItem from="1588215531455" duration="4078000" />
       <workItem from="1593305665427" duration="11617000" />
       <workItem from="1594193750263" duration="10494000" />
+      <workItem from="1594627347215" duration="99000" />
+      <workItem from="1594627447820" duration="3032000" />
+      <workItem from="1594707375680" duration="48000" />
+      <workItem from="1594707678519" duration="1503000" />
+      <workItem from="1594738984180" duration="1371000" />
+      <workItem from="1594814384083" duration="61000" />
+      <workItem from="1594957215759" duration="40000" />
+      <workItem from="1595081529914" duration="616000" />
+      <workItem from="1595224633065" duration="2204000" />
     </task>
     <servers />
   </component>

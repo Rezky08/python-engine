@@ -3,7 +3,9 @@ import pandas as pd
 import numpy as np
 from dosen.pembagi_kelompok import pembagi_kelompok
 from dosen.algen_only_dosen import algen_only_dosen
-from mata_kuliah.algen_matkul_splitted import algen_matkul_splitted
+from mata_kuliah.step1.algen_matkul_new import algen_matkul as algen_matkul_step1
+from mata_kuliah.step2.algen_matkul_new import algen_matkul as algen_matkul_step2
+from mata_kuliah.step3.algen_matkul_new import algen_matkul as algen_matkul_step3
 import sys
 from datetime import datetime
 
@@ -91,12 +93,22 @@ class handle:
         crossover_rate = self.requests['crossover_rate']
         mutation_rate = self.requests['mutation_rate']
         timeout = self.requests['timeout']
-        algen = algen_matkul_splitted(nn_params, num_generation, num_population, crossover_rate, mutation_rate,
-                                      timeout)
-        max_chromosom = algen.run_generation()
+
+        print("=========== STEP 1 ================")
+        algen_step1 = algen_matkul_step1(nn_params, num_generation, num_population, crossover_rate, mutation_rate)
+        res, fit_score, time_elapsed = algen_step1.run_generation()
+        nn_params['mata_kuliah'] = res
+        print("=========== STEP 2 ================")
+        algen_step2 = algen_matkul_step2(nn_params, num_generation, num_population, crossover_rate, mutation_rate)
+        res, fit_score, time_elapsed = algen_step2.run_generation()
+        nn_params['mata_kuliah'] = res
+        print("=========== STEP 3 ================")
+        algen_step3 = algen_matkul_step3(nn_params, num_generation, num_population, crossover_rate, mutation_rate)
+        res, fit_score, time_elapsed = algen_step3.run_generation()
+
         result = {
-            'data': max_chromosom,
-            'fit_score': 1
+            'data': res,
+            'fit_score': fit_score
         }
         return result
 
